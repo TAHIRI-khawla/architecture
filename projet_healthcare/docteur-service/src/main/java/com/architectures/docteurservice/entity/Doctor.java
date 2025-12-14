@@ -27,7 +27,21 @@ public class Doctor {
         this.id = id;
     }
 
+    public String getNom() {
+        return nom;
+    }
 
+    public String getSpecialite() {
+        return specialite;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public void setSpecialite(String specialite) {
+        this.specialite = specialite;
+    }
 }
 
 

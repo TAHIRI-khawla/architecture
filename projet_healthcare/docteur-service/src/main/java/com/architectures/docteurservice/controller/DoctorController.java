@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api/doctors")
 public class DoctorController {
@@ -60,5 +61,26 @@ public class DoctorController {
             return service.findBySpecialite(specialite);
         }
         return service.findAll();
+    }
+
+    // Endpoints pour communiquer avec les autres services
+    @GetMapping("/{id}/appointments")
+    public ResponseEntity<Object> getAppointmentsByDoctor(@PathVariable Long id) {
+        return ResponseEntity.ok(service.getAppointmentsByDoctor(id));
+    }
+
+    @GetMapping("/appointments/all")
+    public ResponseEntity<Object> getAllAppointments() {
+        return ResponseEntity.ok(service.getAllAppointments());
+    }
+
+    @GetMapping("/patients/{patientId}")
+    public ResponseEntity<Object> getPatientById(@PathVariable Long patientId) {
+        return ResponseEntity.ok(service.getPatientById(patientId));
+    }
+
+    @GetMapping("/patients")
+    public ResponseEntity<Object> getAllPatients() {
+        return ResponseEntity.ok(service.getAllPatients());
     }
 }
